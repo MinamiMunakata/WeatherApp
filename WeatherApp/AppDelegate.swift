@@ -26,18 +26,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vancouver = City(name: "Vancouver", weather: "Rainy", temp: "12")
         let tokyo = City(name: "Tokyo", weather: "Sunny", temp: "20")
         let london = City(name: "London", weather: "Cloudy", temp: "14")
-        let newyork = City(name: "New York", weather: "Sunny", temp: "25")
+        let newyork = City(name: "New York", weather: "Cloudy", temp: "25")
+        let lasvegas = City(name: "Las Vegas", weather: "Sunny", temp: "25")
+        
         
 //        // --------------- make a view controller and tab icon ----------------------------------
 //        let vc = ViewController()
 //        vc.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 //        vc.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)  // tag is the order
 //        // ---------------------------------------------------------------------------------------
+        // TODO: initialize five ​CityViewController​ instances, one for each city
+        let vancouverVC = CityViewController()
+        vancouverVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        vancouverVC.tabBarItem = UITabBarItem(title: "Vancouver", image: UIImage(named: "vancouver")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "vancouver"))
+        let tokyoVC = CityViewController()
+        tokyoVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        tokyoVC.tabBarItem = UITabBarItem(title: "Tokyo", image: UIImage(named: "tokyo")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "tokyo"))
+        let londonVC = CityViewController()
+        londonVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        londonVC.tabBarItem = UITabBarItem(title: "London", image: UIImage(named: "london")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "london"))
+        let newyorkVC  = CityViewController()
+        newyorkVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        newyorkVC.tabBarItem = UITabBarItem(title: "New York", image: UIImage(named: "newyork")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "newyork"))
+        let lasvegasVC = CityViewController()
+        lasvegasVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        lasvegasVC.tabBarItem = UITabBarItem(title: "Las Vegas", image: UIImage(named: "lasvegas")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "lasvegas"))
         
+        // TODO: Create navigation controllers for each of the city view controllers
+        let vancouverNav = UINavigationController(rootViewController: vancouverVC)
+        let tokyoNav = UINavigationController(rootViewController: tokyoVC)
+        let londonNav = UINavigationController(rootViewController: londonVC)
+        let newyorkNav = UINavigationController(rootViewController: newyorkVC)
+        let lasvegasNav = UINavigationController(rootViewController: lasvegasVC)
         
-        //let navc = UINavigationController(rootViewController: vc)
-        
-        //coolTBC.viewControllers = [navc] // make a tab with ViewController.swift (with Nav)
+        coolTBC.viewControllers = [vancouverNav, tokyoNav, londonNav, newyorkNav, lasvegasNav] // make a tab with ViewController.swift (with Nav)
         
         window?.makeKeyAndVisible()
         

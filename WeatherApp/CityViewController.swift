@@ -14,6 +14,10 @@ class CityViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let btn = UIButton(frame: CGRect(x: view.bounds.width / 2 - 40, y: view.bounds.height / 2 - 25, width: 80, height: 50))
+        btn.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        view.addSubview(btn)
+        
     }
     
 
