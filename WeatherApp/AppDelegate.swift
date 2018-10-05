@@ -18,16 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let coolTBC = UITabBarController()
+        let tabVC = UITabBarController()
         
-        window?.rootViewController = coolTBC
+        window?.rootViewController = tabVC
         
         // TODO: initialize city objects for Vancouver and 4 other international cities
-        let vancouver = City(name: "Vancouver", weather: "Rainy", temp: "12")
-        let tokyo = City(name: "Tokyo", weather: "Sunny", temp: "20")
-        let london = City(name: "London", weather: "Cloudy", temp: "14")
-        let newyork = City(name: "New York", weather: "Cloudy", temp: "25")
-        let lasvegas = City(name: "Las Vegas", weather: "Sunny", temp: "25")
+        let vancouver = City(name: "Vancouver", temp: 12, precipitation: 95, icon: "vancouver", summary: "Rain")
+        let tokyo = City(name: "Tokyo", temp: 20, precipitation: 10, icon: "tokyo", summary: "Sunny")
+        let london = City(name: "London", temp: 14, precipitation: 70, icon: "london", summary: "Fog")
+        let newyork = City(name: "New York", temp: 25, precipitation: 40, icon: "newyork", summary: "Wind")
+        let lasvegas = City(name: "Las Vegas", temp: 25, precipitation: 20, icon: "lasvegas", summary: "Sunny")
         
         
 //        // --------------- make a view controller and tab icon ----------------------------------
@@ -37,29 +37,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // ---------------------------------------------------------------------------------------
         // TODO: initialize five ​CityViewController​ instances, one for each city
         let vancouverVC = CityViewController()
-        vancouverVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        vancouverVC.tabBarItem = UITabBarItem(title: "Vancouver", image: UIImage(named: "vancouver")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "vancouver"))
+        vancouverVC.city = vancouver
+        vancouverVC.tabBarItem = UITabBarItem(title: vancouver.name, image: UIImage(named: vancouver.icon)?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: vancouver.icon))
         let tokyoVC = CityViewController()
-        tokyoVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        tokyoVC.tabBarItem = UITabBarItem(title: "Tokyo", image: UIImage(named: "tokyo")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "tokyo"))
+        tokyoVC.city = tokyo
+        tokyoVC.tabBarItem = UITabBarItem(title: tokyo.name, image: UIImage(named: tokyo.icon)?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: tokyo.icon))
         let londonVC = CityViewController()
-        londonVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        londonVC.tabBarItem = UITabBarItem(title: "London", image: UIImage(named: "london")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "london"))
+        londonVC.city = london
+        londonVC.tabBarItem = UITabBarItem(title: london.name, image: UIImage(named: london.icon)?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: london.icon))
         let newyorkVC  = CityViewController()
-        newyorkVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        newyorkVC.tabBarItem = UITabBarItem(title: "New York", image: UIImage(named: "newyork")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "newyork"))
+        newyorkVC.city = newyork
+        newyorkVC.tabBarItem = UITabBarItem(title: newyork.name, image: UIImage(named: newyork.icon)?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: newyork.icon))
         let lasvegasVC = CityViewController()
-        lasvegasVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        lasvegasVC.tabBarItem = UITabBarItem(title: "Las Vegas", image: UIImage(named: "lasvegas")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: "lasvegas"))
+        lasvegasVC.city = lasvegas
+        lasvegasVC.tabBarItem = UITabBarItem(title: lasvegas.name, image: UIImage(named: lasvegas.icon)?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), selectedImage: UIImage(named: lasvegas.icon))
         
         // TODO: Create navigation controllers for each of the city view controllers
-        let vancouverNav = UINavigationController(rootViewController: vancouverVC)
-        let tokyoNav = UINavigationController(rootViewController: tokyoVC)
-        let londonNav = UINavigationController(rootViewController: londonVC)
-        let newyorkNav = UINavigationController(rootViewController: newyorkVC)
-        let lasvegasNav = UINavigationController(rootViewController: lasvegasVC)
         
-        coolTBC.viewControllers = [vancouverNav, tokyoNav, londonNav, newyorkNav, lasvegasNav] // make a tab with ViewController.swift (with Nav)
+        let cities = [vancouverVC, tokyoVC, londonVC, newyorkVC, lasvegasVC]
+        let embeded = cities.map{ UINavigationController(rootViewController: $0)}
+        tabVC.viewControllers = embeded
+        
+//        let vancouverNav = UINavigationController(rootViewController: vancouverVC)
+//        let tokyoNav = UINavigationController(rootViewController: tokyoVC)
+//        let londonNav = UINavigationController(rootViewController: londonVC)
+//        let newyorkNav = UINavigationController(rootViewController: newyorkVC)
+//        let lasvegasNav = UINavigationController(rootViewController: lasvegasVC)
+//
+//        tabVC.viewControllers = [vancouverNav, tokyoNav, londonNav, newyorkNav, lasvegasNav] // make a tab with ViewController.swift (with Nav)
         
         window?.makeKeyAndVisible()
         
